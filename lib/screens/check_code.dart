@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:studentmanagement/style/style.dart';
 
 
 class CheckCodeScreen extends StatefulWidget {
@@ -13,8 +14,9 @@ class _CheckCodeScreenState extends State<CheckCodeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: bgColor,
       body: Container(
-        child:Center(child: Text("checking code" + widget.code))
+        child:Center(child: Text("checking code " + widget.code, style: textDark(),))
       ),
     );
   }
