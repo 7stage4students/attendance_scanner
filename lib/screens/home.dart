@@ -27,11 +27,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: Text("Seven Advanced Academy"),
-      //   backgroundColor: secondary,
-      //   centerTitle: true,
-      // ),
       backgroundColor: primary,
       body: Column(
         children: <Widget>[

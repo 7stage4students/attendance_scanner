@@ -1,4 +1,4 @@
-# studentmanagement
+# Student Management
 
 A new Flutter application.
 
