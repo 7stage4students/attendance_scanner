@@ -16,7 +16,7 @@ class NotFoundScreen extends StatelessWidget {
                 children: <Widget>[
                   Text(
                     "Error Occurred. Invalid QR Code",
-                    style: textDark(),
+                    style: textSyle(),
                   )
                 ],
               ),

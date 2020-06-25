@@ -20,7 +20,7 @@ class _CheckCodeScreenState extends State<CheckCodeScreen> {
           child: Center(
               child: Text(
         "checking code " + widget.code,
-        style: textDark(),
+        style: textSyle(),
       ))),
     );
   }

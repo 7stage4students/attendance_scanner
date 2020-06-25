@@ -30,7 +30,7 @@ TextStyle name() {
   return TextStyle();
 }
 
-TextStyle textDarkBg() {
+TextStyle titleStyle() {
   return TextStyle(
     fontSize: 24,
     color: Colors.white,
@@ -38,18 +38,18 @@ TextStyle textDarkBg() {
   );
 }
 
-TextStyle textDarkDesc() {
+TextStyle subTitleStyle() {
   return TextStyle(
     fontSize: 16,
-    color: Colors.white.withOpacity(0.8),
+    color: Colors.white.withOpacity(0.9),
     fontWeight: FontWeight.w600,
   );
 }
 
-TextStyle textDark() {
+TextStyle textSyle() {
   return TextStyle(
     fontSize: 18.0,
-    color: tertiary,
+    color: Colors.white.withOpacity(0.9),
     fontWeight: FontWeight.w600,
   );
 }
