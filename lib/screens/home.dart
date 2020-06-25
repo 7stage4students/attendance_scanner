@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_qr_bar_scanner/qr_bar_scanner_camera.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:studentmanagement/models/student.dart';
 import 'package:studentmanagement/style/style.dart';
 import 'package:http/http.dart' as http;
 
@@ -18,6 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() {
       cameraOn = true;
     });
+    getData();
   }
 
   @override
@@ -110,24 +114,46 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  void getData() async {
-    var url = '';
-    var response = await http.get(url);
-    print(response.body);
+  // just a test
+  Future<Student> getData() async {
+    var url = 'https://jsonplaceholder.typicode.com/users/1';
+    final response = await http.get(url);
+
+    if (response.statusCode == 200) {
+      print(response.body);
+      return Student.fromJson(json.decode(response.body));
+    } else {
+      throw Exception('Failed to load student');
+    }
   }
 
-  manageQRCode(String code) async {
+  manageQRCode(String code) {
     setState(() {
       cameraOn = false;
     });
     print(code);
 
-    ///check if code an valid
-    ///get student data from  api
+    // String studentCode;
+
+    /// go to check code
     Navigator.of(context)
         .pushNamed("/checkCode", arguments: code)
         .then((value) => setState(() {
               cameraOn = true;
             }));
+
+    ///check if code an valid
+    // if (code == studentCode) {
+    //   ///get student data from  api
+
+    //   /// go to manage
+    //   Navigator.of(context).pushNamed("/manage").then((value) => setState(() {
+    //         cameraOn = true;
+    //       }));
+    // } else {
+    //   Navigator.of(context).pushNamed("/notFound").then((value) => setState(() {
+    //         cameraOn = true;
+    //       }));
+    // }
   }
 }
