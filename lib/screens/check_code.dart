@@ -1,9 +1,5 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/async.dart';
 import 'package:studentmanagement/components/app_bar.dart';
-import 'package:studentmanagement/models/student.dart';
 import 'package:studentmanagement/style/style.dart';
 import 'package:dio/dio.dart';
 
@@ -32,7 +28,7 @@ class _CheckCodeScreenState extends State<CheckCodeScreen> {
               style: textSyle(),
             )));
           }
-          return CircularProgressIndicator();
+          return Center(child: CircularProgressIndicator());
           }),
     );
   }

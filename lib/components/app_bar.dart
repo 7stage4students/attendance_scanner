@@ -6,7 +6,5 @@ getAppBar(String title) {
     title: Text(title),
     backgroundColor: primary,
     centerTitle: true,
-    
-  
   );
 }

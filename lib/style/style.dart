@@ -5,6 +5,9 @@ final secondary = const Color(0xFF52898B);
 final tertiary = const Color(0xFFF89623);
 final bgColor = const Color(0xFF273742);
 
+final greyBackground = const Color.fromRGBO(249, 252, 255, 1);
+final greyBorder = const Color.fromRGBO(207, 207, 207, 1);
+
 //--------------------------- Theme data ----------------------------
 
 ThemeData getTheme() {
@@ -49,11 +52,26 @@ TextStyle subTitleStyle() {
 TextStyle textSyle() {
   return TextStyle(
     fontSize: 18.0,
-    color: Colors.white.withOpacity(0.9),
+    color: bgColor,
     fontWeight: FontWeight.w600,
   );
 }
 
 TextStyle scanStyle() {
   return TextStyle(fontSize: 16, color: tertiary, fontWeight: FontWeight.w600);
+}
+
+TextStyle btnText() {
+  return TextStyle(
+    fontSize: 22,
+    fontWeight: FontWeight.w500,
+  );
+}
+
+TextStyle ggleBtn() {
+  return TextStyle(
+    fontSize: 18,
+    fontWeight: FontWeight.w500,
+    color: Colors.black54,
+  );
 }

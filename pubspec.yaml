@@ -18,6 +18,7 @@ dependencies:
   flutter_qr_bar_scanner: ^1.0.2
   flutter_spinkit: ^4.1.2+1
   dio: ^3.0.9
+  giffy_dialog: ^1.7.0
 
 dev_dependencies:
   flutter_test:
@@ -29,7 +30,7 @@ flutter:
 
   assets:
     - assets/
-    - assets/icon/
+    - assets/img/
 
   fonts:
   - family: rubik

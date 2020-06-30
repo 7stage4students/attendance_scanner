@@ -1,12 +1,5 @@
-import 'dart:convert';
-
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_qr_bar_scanner/qr_bar_scanner_camera.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:studentmanagement/models/student.dart';
 import 'package:studentmanagement/style/style.dart';
-
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -14,25 +7,10 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  bool cameraOn = true;
-
-  @override
-  void initState() {
-    super.initState();
-    setState(() {
-      cameraOn = true;
-    });
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: tertiary.withOpacity(.9),
+      backgroundColor: primary,
       body: Column(
         children: <Widget>[
           Container(
@@ -48,88 +26,91 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           Expanded(
-            flex: 4,
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 20.0),
+              //padding: EdgeInsets.symmetric(horizontal: 20.0),
               decoration: BoxDecoration(
-                color: primary,
+                color: greyBackground,
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(50),
                   topRight: Radius.circular(50),
                 ),
               ),
-              child: cameraOn
-                  ? Center(
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    RaisedButton(
+                      onPressed: () {
+                        Navigator.of(context).pushNamed("/scan-code");
+                      },
+                      elevation: 0,
+                      highlightElevation: 0,
+                      textColor: Colors.white,
+                      padding: const EdgeInsets.all(0.0),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
                       child: Container(
-                        width: screenWidth(context) / 1.3,
-                        height: screenHeight(context) / 2.6,
+                        width: screenWidth(context) / 1.2,
+                        height: 60,
                         decoration: BoxDecoration(
-                            //border: Border.all(color: Colors.white.withOpacity(0.8)),
-                            ),
-                        child: QRBarScannerCamera(
-                          onError: (context, error) => Text(
-                            error.toString(),
-                            style: TextStyle(color: Colors.red),
-                          ),
-                          qrCodeCallback: (code) {
-                           //manage Information from QR code
-                            manageQRCode(code);
-                          },
-                          notStartedBuilder: (context) {
-                            return Center(
-                              child: Text(
-                                "Loading Scanner Camera...",
-                                style: textSyle(),
-                              ),
-                            );
-                          },
-                          offscreenBuilder: (context) {
-                            return Center(
-                              child: Text(
-                                'Scanner Camera Paused.',
-                                style: textSyle(),
-                              ),
-                            );
-                          },
-                          child: Center(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                SpinKitRipple(
-                                  color: tertiary,
-                                  size: 50.0,
-                                ),
-                                Text("Scanning", style: scanStyle()),
-                              ],
-                            ),
+                          color: tertiary,
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(8.0),
                           ),
                         ),
+                        padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Text(
+                              'Scan Code',
+                              style: btnText(),
+                            ),
+                          ],
+                        ),
                       ),
-                    )
-                  : Center(),
+                    ),
+                    SizedBox(height: 20.0),
+                    RaisedButton(
+                      onPressed: () {
+                        Navigator.of(context).pushNamed("/get-matricule");
+                      },
+                      elevation: 0,
+                      highlightElevation: 0,
+                      textColor: Colors.white,
+                      padding: const EdgeInsets.all(0.0),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      child: Container(
+                        width: MediaQuery.of(context).size.width / 1.2,
+                        height: 60,
+                        decoration: BoxDecoration(
+                          color: tertiary,
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(8.0),
+                          ),
+                        ),
+                        padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Text(
+                              'Enter Matricule',
+                              style: btnText(),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
           ),
         ],
       ),
     );
-  }
-
-  
-
-  manageQRCode(String code) {
-    setState(() {
-      cameraOn = false;
-    });
-    print(code);
-
-    // String studentCode;
-
-    /// go to check code
-    Navigator.of(context)
-        .pushNamed("/checkCode", arguments: code)
-        .then((value) => setState(() {
-              cameraOn = true;
-            }));
-
   }
 }
