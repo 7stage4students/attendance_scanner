@@ -65,7 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           children: <Widget>[
                             Text(
                               'Scan Code',
-                              style: btnText(),
+                              style: btnTextStyle(),
                             ),
                           ],
                         ),
@@ -98,7 +98,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           children: <Widget>[
                             Text(
                               'Enter Matricule',
-                              style: btnText(),
+                              style: btnTextStyle(),
                             ),
                           ],
                         ),

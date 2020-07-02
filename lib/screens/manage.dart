@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:giffy_dialog/giffy_dialog.dart';
 import 'package:studentmanagement/components/app_bar.dart';
+import 'package:studentmanagement/components/button.dart';
 import 'package:studentmanagement/style/style.dart';
 
 class ManageScreen extends StatefulWidget {
@@ -20,23 +21,66 @@ class _ManageScreenState extends State<ManageScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: getAppBar("Manage"),
-      backgroundColor: greyBackground,
-      body: Center(
-        child: Container(
-          child: RaisedButton(
-            color: Colors.teal,
-            child: Text(
-              'Giffy dialog',
-              style: TextStyle(
-                color: Colors.white,
+        appBar: getAppBar("Manage"),
+        backgroundColor: greyBackground,
+        body: Column(
+          children: <Widget>[
+            ///student picture
+            ClipRect(
+              child: Image.asset(
+                "assets/img/freddy.jpg",
+                fit: BoxFit.cover,
               ),
             ),
-            onPressed: _showUserInfo,
-          ),
-        ),
-      ),
-    );
+            SizedBox(
+              height: 20,
+            ),
+            Text(
+              "Freddy Tamwo",
+              style: titleStyle().copyWith(color: Colors.grey, fontSize: 32),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text(
+                  "Web Development" + " - ",
+                ),
+                SizedBox(
+                  width: 8,
+                ),
+                Text(
+                  "Level 3",
+                  style: TextStyle(fontWeight: FontWeight.w400),
+                )
+              ],
+            ),
+            SizedBox(height: 16,),
+
+            ///Mark Presetn
+            StandardButton(
+              btnText: "Mark As Present",
+              btnColor: tertiary,
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            StandardButton(
+              btnText: "Manage Student",
+              btnColor: primary,
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            StandardButton(
+              btnText: "Deactivate Account",
+              btnColor: Colors.grey,
+            ),
+
+            ///Manage Student
+
+            ///disable account
+          ],
+        ));
   }
 
   Future<Null> _showUserInfo() {

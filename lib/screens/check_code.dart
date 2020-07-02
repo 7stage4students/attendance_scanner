@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:studentmanagement/components/app_bar.dart';
 import 'package:studentmanagement/style/style.dart';
-import 'package:dio/dio.dart';
+import 'package:studentmanagement/utils/db.dart';
 
 class CheckCodeScreen extends StatefulWidget {
   final String code;
@@ -18,32 +18,21 @@ class _CheckCodeScreenState extends State<CheckCodeScreen> {
       appBar: getAppBar("Check Code"),
       backgroundColor: bgColor,
       body: FutureBuilder(
-          future: getStudentDetails(),
+          future: getStudentDetails(context, widget.code),
           builder: (context, snapshot) {
-          if(snapshot.connectionState == ConnectionState.done && snapshot.hasData){
+            if (snapshot.connectionState == ConnectionState.done &&
+                snapshot.hasData) {
               return Container(
-                child: Center(
-                    child: Text(
-              "checking code " + widget.code,
-              style: textSyle(),
-            )));
-          }
-          return Center(child: CircularProgressIndicator());
+                  child: Center(
+                      child: Text(
+                "checking code " + widget.code,
+                style: textSyle(),
+              )));
+            }
+            return Center(child: CircularProgressIndicator());
           }),
     );
   }
 
-  // just a test
-  Future getStudentDetails() async {
-    var url = 'https://seven-student-manager.web.app/student/dkfjdfkj';
-    var dio = Dio();
-    Response response = await dio.get(url);
-
-    if (response.statusCode == 200) {
-      print(response.data);
-      return response.data;
-    } else {
-      throw Exception('Failed to load student');
-    }
-  }
+ 
 }

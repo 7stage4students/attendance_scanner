@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:studentmanagement/components/app_bar.dart';
 import 'package:studentmanagement/style/style.dart';
+import 'package:studentmanagement/utils/db.dart';
+import 'package:studentmanagement/utils/utils.dart';
 
 class GetMatricule extends StatefulWidget {
   @override
@@ -10,6 +12,7 @@ class GetMatricule extends StatefulWidget {
 class _GetMatriculeState extends State<GetMatricule> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool _autoValidate = false;
+  bool _showLoading = false;
 
   String matricule;
 
@@ -87,7 +90,7 @@ class _GetMatriculeState extends State<GetMatricule> {
                       children: <Widget>[
                         Text(
                           'Send',
-                          style: btnText(),
+                          style: btnTextStyle(),
                         ),
                       ],
                     ),
@@ -101,19 +104,20 @@ class _GetMatriculeState extends State<GetMatricule> {
     );
   }
 
-  getMatricule() {
+  getMatricule() async {
     final FormState form = _formKey.currentState;
     if (!form.validate()) {
       setState(() {
         _autoValidate = true;
       });
     } else {
+      showLoadingBox((context), matricule);
       form.save();
 
-      print(matricule);
+      await getStudentDetails(context, matricule);
 
       /// go to manager
-      Navigator.of(context).pushNamed("/manage", arguments: matricule);
+      // Navigator.of(context).pushNamed("/manage", arguments: matricule);
     }
   }
 }

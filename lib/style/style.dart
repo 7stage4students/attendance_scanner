@@ -61,7 +61,7 @@ TextStyle scanStyle() {
   return TextStyle(fontSize: 16, color: tertiary, fontWeight: FontWeight.w600);
 }
 
-TextStyle btnText() {
+TextStyle btnTextStyle() {
   return TextStyle(
     fontSize: 22,
     fontWeight: FontWeight.w500,
