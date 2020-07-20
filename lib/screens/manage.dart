@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:giffy_dialog/giffy_dialog.dart';
 import 'package:studentmanagement/components/app_bar.dart';
@@ -5,9 +6,9 @@ import 'package:studentmanagement/components/button.dart';
 import 'package:studentmanagement/style/style.dart';
 
 class ManageScreen extends StatefulWidget {
-  final String matricule;
+  final dynamic data;
 
-  const ManageScreen({Key key, this.matricule}) : super(key: key);
+  const ManageScreen({Key key, this.data}) : super(key: key);
   @override
   _ManageScreenState createState() => _ManageScreenState();
 }
@@ -23,64 +24,69 @@ class _ManageScreenState extends State<ManageScreen> {
     return Scaffold(
         appBar: getAppBar("Manage"),
         backgroundColor: greyBackground,
-        body: Column(
-          children: <Widget>[
-            ///student picture
-            ClipRect(
-              child: Image.asset(
-                "assets/img/freddy.jpg",
-                fit: BoxFit.cover,
+        body: widget.data["student"] == null ? Center(child: Text("Not Found"),):buildStudentInfo());
+  }
+
+  Column buildStudentInfo() {
+    print(widget.data);
+    return Column(
+        children: <Widget>[
+          ///student picture
+          ClipRect(
+            child: Image.asset(
+              "assets/img/freddy.jpg",
+              fit: BoxFit.cover,
+            ),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Text(
+            "Freddy Tamwo",
+            style: titleStyle().copyWith(color: Colors.grey, fontSize: 32),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                "Web Development" + " - ",
               ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Text(
-              "Freddy Tamwo",
-              style: titleStyle().copyWith(color: Colors.grey, fontSize: 32),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  "Web Development" + " - ",
-                ),
-                SizedBox(
-                  width: 8,
-                ),
-                Text(
-                  "Level 3",
-                  style: TextStyle(fontWeight: FontWeight.w400),
-                )
-              ],
-            ),
-            SizedBox(height: 16,),
+              SizedBox(
+                width: 8,
+              ),
+              Text(
+               "test",
+                style: TextStyle(fontWeight: FontWeight.w400),
+              )
+            ],
+          ),
+          SizedBox(height: 16,),
 
-            ///Mark Presetn
-            StandardButton(
-              btnText: "Mark As Present",
-              btnColor: tertiary,
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            StandardButton(
-              btnText: "Manage Student",
-              btnColor: primary,
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            StandardButton(
-              btnText: "Deactivate Account",
-              btnColor: Colors.grey,
-            ),
+          ///Mark Presetn
+          StandardButton(
+            btnText: "Mark As Present",
+            btnColor: tertiary,
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          StandardButton(
+            btnText: "Manage Student",
+            btnColor: primary,
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          StandardButton(
+            btnText: "Deactivate Account",
+            btnColor: Colors.grey,
+          ),
 
-            ///Manage Student
+          ///Manage Student
 
-            ///disable account
-          ],
-        ));
+          ///disable account
+        ],
+      );
   }
 
   Future<Null> _showUserInfo() {

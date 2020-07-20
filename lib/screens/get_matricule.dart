@@ -12,7 +12,6 @@ class GetMatricule extends StatefulWidget {
 class _GetMatriculeState extends State<GetMatricule> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool _autoValidate = false;
-  bool _showLoading = false;
 
   String matricule;
 

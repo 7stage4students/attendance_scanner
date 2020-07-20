@@ -6,7 +6,7 @@ class Student {
 
   Student({this.id, this.name, this.courses, this.level});
 
-  factory Student.fromJson(Map<String, dynamic> json) {
+  factory Student.fromJson(dynamic json) {
     return Student(
       id: json['id'],
       name: json['name'],

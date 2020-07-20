@@ -13,36 +13,34 @@ final Color btnColor;
   @override
   Widget build(BuildContext context) {
   return  RaisedButton(
-      onPressed: () {
-        // submit function
-      },
-      elevation: 0,
-      highlightElevation: 0,
-      textColor: Colors.white,
-      padding: const EdgeInsets.all(0.0),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8.0),
+    elevation: 0,
+    highlightElevation: 0,
+    textColor: Colors.white,
+    padding: const EdgeInsets.all(0.0),
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(8.0),
+    ),
+    onPressed: () {  },
+    child: Container(
+      width: screenWidth(context) / 1.2,
+      height: 60,
+      decoration: BoxDecoration(
+        color: this.btnColor,
+        borderRadius: BorderRadius.all(
+          Radius.circular(8.0),
+        ),
       ),
-      child: Container(
-        width: screenWidth(context) / 1.2,
-        height: 60,
-        decoration: BoxDecoration(
-          color: this.btnColor,
-          borderRadius: BorderRadius.all(
-            Radius.circular(8.0),
+      padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Text(
+            this.btnText,
+            style: btnTextStyle(),
           ),
-        ),
-        padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              this.btnText,
-              style: btnTextStyle(),
-            ),
-          ],
-        ),
+        ],
       ),
-    );
+    ),
+  );
   }
 }
